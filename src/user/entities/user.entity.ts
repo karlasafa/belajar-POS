@@ -26,6 +26,6 @@ export class User {
   @CreateDateColumn()
   create_at: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   update_at: Date;
 }
