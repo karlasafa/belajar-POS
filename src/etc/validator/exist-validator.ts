@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { isValidationOptions, registerDecorator, ValidationArguments, ValidatorConstraintInterface, ValidatorOptions } from 'class-validator';
+import { isValidationOptions, registerDecorator, ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface, ValidatorOptions } from 'class-validator';
 import { getConnection } from 'typeorm';
-
+@ValidatorConstraint({async:true})
 @Injectable()
 export class ExistValidator implements ValidatorConstraintInterface{
     async validate(value:any, args:ValidationArguments){
@@ -15,14 +15,14 @@ export class ExistValidator implements ValidatorConstraintInterface{
     }
 }
 
-export function IsExist(option:any,isValidationOption:ValidatorOptions){
+export function IsExist(option:any,isValidationOptions:ValidatorOptions){
     return function (object:any, propertyName:string){
       registerDecorator({
           name : 'IsExist',
           target : object.constructor,
           propertyName : propertyName,
           constraints : option,
-          options : isValidationOption,
+          options : isValidationOptions,
           validator : ExistValidator,
           async : true
       })  
