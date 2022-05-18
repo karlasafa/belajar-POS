@@ -1,22 +1,26 @@
+import { OmitType, PickType } from "@nestjs/mapped-types"
 import { IsEmail, IsOptional, IsString, maxLength, MaxLength, MinLength } from "class-validator"
 import { IsExist } from "src/etc/validator/exist-validator"
+import { IsUnique } from "src/etc/validator/unique-validator"
 import { User } from "../entities/user.entity"
 
-export class CreateUserDto {
+export class UserDto {
     @IsOptional()
-    id : number
+    @IsExist([User, 'id'])
+    id? : number
 
     @IsString()
     @MaxLength(200)
     nama_user : string
 
     @IsEmail()
-    @IsExist([User, 'email'])
+    @IsUnique([User,'email'])
     email : string
 
     @IsString()
     @MinLength(6)
     @MaxLength(50)
+    @IsUnique([User,'username'])
     username : string
 
     @IsString()
@@ -24,3 +28,5 @@ export class CreateUserDto {
     @MaxLength(32)
     password : string
 }
+export class CreateUserDto extends OmitType(UserDto,['id']) {}
+export class UserIdDto extends PickType(UserDto,['id']) {}
