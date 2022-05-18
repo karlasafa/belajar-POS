@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerCustomOptions, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -13,6 +14,18 @@ async function bootstrap() {
       enableImplicitConversion: true
     }
   }))
+
+  const configSwagger = new DocumentBuilder()
+  .setTitle('Point of sale documentation')
+  .setDescription('Dokumentasi untuk api point of sale')
+  .setVersion('1,2')
+  .build()
+
+  const configCustomSwagger : SwaggerCustomOptions = {
+    swaggerOptions : { docExpansion : "none"}
+  }
+
+  const doc = SwaggerModule.createDocument(app,configSwagger)
   await app.listen(3000);
 }
 bootstrap();
