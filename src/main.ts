@@ -19,6 +19,7 @@ async function bootstrap() {
   .setTitle('Point of sale documentation')
   .setDescription('Dokumentasi untuk api point of sale')
   .setVersion('1,2')
+  .addBearerAuth()
   .build()
 
   const configCustomSwagger : SwaggerCustomOptions = {
