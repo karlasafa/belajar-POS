@@ -15,7 +15,7 @@ export class KonsumenService {
   }
 
   findAll() {
-    return this.konsumenRepo.find();
+    return this.konsumenRepo.find({relations:['user']});
   }
 
   findOne(id: number) {

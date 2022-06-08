@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { KonsumenService } from './konsumen.service';
-import { CreateKonsumanDto } from './dto/create-konsuman.dto';
+import { CreateKonsumanDto, KonsumenId } from './dto/create-konsuman.dto';
 import { UpdateKonsumanDto } from './dto/update-konsuman.dto';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { InjectUser } from 'src/etc/decorator/inject-user.decorator';
@@ -36,7 +36,7 @@ export class KonsumenController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.konsumenService.remove(+id);
+  remove(@Param() id: KonsumenId) {
+    return this.konsumenService.remove(id.id);
   }
 }

@@ -15,7 +15,7 @@ export class ProdukService {
   }
 
   findAll() {
-    return this.produkRepo.find();
+    return this.produkRepo.find({relations:['user']});
   }
 
   findOne(id: number) {
