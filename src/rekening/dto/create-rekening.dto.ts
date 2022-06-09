@@ -17,6 +17,11 @@ export class RekeningDto{
    @IsString()
    keterangan_rekening : string
 
+   @ApiProperty()
+   @IsString()
+   type_rekening : string
+
+
    @IsObject()
    user : CreateUserDto
 }
