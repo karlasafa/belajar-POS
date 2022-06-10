@@ -25,7 +25,7 @@ export class RekeningController {
   }
 
   @Get(':id')
-  findOne(@InjectUser('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.rekeningService.findOne(+id);
   }
 
