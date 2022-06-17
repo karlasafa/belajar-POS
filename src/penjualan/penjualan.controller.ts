@@ -1,11 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { PenjualanService } from './penjualan.service';
-import { CreatePenjualanDto } from './dto/create-penjualan.dto';
+import { CreatePenjualanDto, FindPenjualanDto, PenjualanId, ResponsePenjualanDto } from './dto/create-penjualan.dto';
 import { UpdatePenjualanDto } from './dto/update-penjualan.dto';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { PenjualanProses } from './penjualan-proses.decorator';
+import { JwtGuard } from 'src/auth/jwt.guard';
+import { filter } from 'rxjs';
 
 @ApiTags('Penjualan')
+@ApiBearerAuth()
+@UseGuards(JwtGuard) 
 @Controller('penjualan')
 export class PenjualanController {
   constructor(private readonly penjualanService: PenjualanService) {}
@@ -17,8 +21,9 @@ export class PenjualanController {
   }
 
   @Get()
-  findAll() {
-    return this.penjualanService.findAll();
+  @ApiOkResponse({type:ResponsePenjualanDto})
+  findAll(@Query() filter : FindPenjualanDto) {
+    return this.penjualanService.findAll(filter);
   }
 
   @Get(':id')
@@ -33,7 +38,7 @@ export class PenjualanController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.penjualanService.remove(+id); //menit 3:42
+  remove(@Param() id: PenjualanId) {
+    return this.penjualanService.remove(id.id);
   }
 }

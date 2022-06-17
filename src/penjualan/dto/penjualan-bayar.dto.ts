@@ -3,7 +3,7 @@ import { IsDate, IsNumber, IsObject, IsOptional, ValidateNested } from "class-va
 import { RekeningIdDto } from "src/rekening/dto/create-rekening.dto";
 import { UserIdDto } from "src/user/dto/create-user.dto";
 
-export class PenjualanBayarDto{
+export class PenjualanBayarDto{ //menit 3:53
     @IsOptional()
     id : number
 

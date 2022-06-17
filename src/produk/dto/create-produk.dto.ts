@@ -1,5 +1,6 @@
 import { ApiProperty, OmitType, PickType } from "@nestjs/swagger"
-import { IsNumber, IsObject, IsOptional, IsString } from "class-validator"
+import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString } from "class-validator"
+import { PageRequestDto } from "src/etc/dto/page.dto"
 import { IsExist } from "src/etc/validator/exist-validator"
 import { IsUnique } from "src/etc/validator/unique-validator"
 import { UserDto } from "src/user/dto/create-user.dto"
@@ -11,6 +12,7 @@ export class ProdukDto {
     id: number
 
     @ApiProperty()
+    @IsNotEmpty()
     @IsUnique([Produk,'barcode'])
     barcode: string
 
@@ -39,3 +41,34 @@ export class ProdukDto {
 }
 export class CreateProdukDto extends OmitType(ProdukDto,['id']){}
 export class ProdukIdDto extends PickType(ProdukDto,['id']){}
+
+export class FindProdukDto extends PageRequestDto{
+    @ApiProperty({required:false})
+    @IsOptional()
+    barcode: string
+
+    @ApiProperty({required:false})
+    @IsOptional()
+    @IsString()
+    nama_produk: string
+
+    @ApiProperty({required:false})
+    @IsOptional()
+    @IsString()
+    deskripsi_produk: string
+   
+    @ApiProperty({required:false})
+    @IsOptional()
+    @IsNumber()
+    harga_beli: number
+
+    @ApiProperty({required:false})
+    @IsOptional()
+    @IsNumber()
+    harga_jual: number
+
+}
+export class ResponseProdukDto extends PageRequestDto{
+    @ApiProperty({type:[ProdukDto]})
+    data : ProdukDto[]
+}

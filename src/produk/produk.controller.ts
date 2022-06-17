@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, UseInterceptors, UploadedFile, Query } from '@nestjs/common';
 import { ProdukService } from './produk.service';
-import { CreateProdukDto, ProdukDto } from './dto/create-produk.dto';
+import { CreateProdukDto, FindProdukDto, ProdukDto, ProdukIdDto, ResponseProdukDto } from './dto/create-produk.dto';
 import { UpdateProdukDto } from './dto/update-produk.dto';
-import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { JwtGuard } from 'src/auth/jwt.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -34,8 +34,9 @@ export class ProdukController {
   }
 
   @Get()
-  findAll() {
-    return this.produkService.findAll();
+  @ApiOkResponse({type:ResponseProdukDto})
+  findAll(@Query() page : FindProdukDto) {
+    return this.produkService.findAll(page);
   }
 
   @Get(':id')
@@ -49,7 +50,7 @@ export class ProdukController {
   }
 
   @Delete(':id')
-  remove(@Param() id: ProdukDto) {
+  remove(@Param() id: ProdukIdDto) {
     return this.produkService.remove(id.id);
   }
 }
