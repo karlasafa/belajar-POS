@@ -17,7 +17,7 @@ export class PenjualanItem{
     @Column()
     potongan : number
 
-    @ManyToOne(()=> Penjualan, pj => pj.id,{onDelete:'CASCADE',onUpdate:'CASCADE'})
+    @ManyToOne(()=>Penjualan, pj => pj.id,{onDelete:"CASCADE", onUpdate:"CASCADE"})
     penjualan : Penjualan
 
     @ManyToOne(()=>Produk, prod => prod.id)
@@ -26,10 +26,9 @@ export class PenjualanItem{
     @CreateDateColumn()
     create_at : Date
 
-    @UpdateDateColumn({onUpdate:'CURRENT_TIMESTAMP(6)'})
+    @UpdateDateColumn({onUpdate:"CURRENT_TIMESTAMP(6)"})
     update_at : Date
 
-    @ManyToOne(()=>User, usr => usr.id)
+    @ManyToOne(()=> User, usr => usr.id)
     user : User
-
 }

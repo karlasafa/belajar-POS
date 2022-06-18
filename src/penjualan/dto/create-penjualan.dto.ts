@@ -1,13 +1,13 @@
-import { ApiProperty, OmitType, PickType } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsArray, IsDate, IsNumber, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
-import { PageRequestDto, PageResponsDto } from "src/etc/dto/page.dto";
-import { IsExist } from "src/etc/validator/exist-validator";
-import { IsUnique } from "src/etc/validator/unique-validator";
-import { KonsumenId } from "src/konsumen/dto/create-konsuman.dto";
-import { UserIdDto } from "src/user/dto/create-user.dto";
-import { Penjualan } from "../entities/penjualan.entity";
-import { PenjualanBayarDto } from "./penjualan-bayar.dto";
+import { ApiProperty, OmitType, PickType } from "@nestjs/swagger"
+import { Type } from "class-transformer"
+import { IsArray, IsDate, IsNumber, IsObject, IsOptional, IsString, ValidateNested } from "class-validator"
+import { PageRequestDto, PageResponsDto } from "src/etc/dto/page-dto"
+import { IsExist } from "src/etc/validator/exist-validator"
+import { IsUnique } from "src/etc/validator/unique-validator"
+import { KonsumenId } from "src/konsumen/dto/create-konsuman.dto"
+import { UserIdDto } from "src/user/dto/create-user.dto"
+import { Penjualan } from "../entities/penjualan.entity"
+import { PenjualanBayarDto } from "./penjualan-bayar.dto"
 import { PenjualanItemDto } from "./penjualan-item.dto"
 
 export class PenjualanDto{
@@ -17,7 +17,7 @@ export class PenjualanDto{
 
     @ApiProperty()
     @IsString()
-    @IsUnique([Penjualan, 'no_faktur'])
+    @IsUnique([Penjualan,'no_faktur'])
     no_faktur : string
 
     @ApiProperty()
@@ -35,13 +35,14 @@ export class PenjualanDto{
 
     @ApiProperty({type:KonsumenId})
     @ValidateNested()
+    @IsObject()
     konsumen : KonsumenId
 
     @ApiProperty({type:[PenjualanItemDto]})
     @IsArray()
     @ValidateNested({each:true})
     @Type(()=>PenjualanItemDto)
-    item : PenjualanItemDto[] 
+    item : PenjualanItemDto[]
 
     @ApiProperty({type:[PenjualanBayarDto]})
     @IsArray()
@@ -54,7 +55,7 @@ export class PenjualanDto{
 
 }
 export class CreatePenjualanDto extends OmitType(PenjualanDto,['id']) {}
-export class PenjualanId extends PickType(PenjualanDto,['id']) {}
+export class PenjualanId extends PickType(PenjualanDto,['id']){}
 
 export class FindPenjualanDto extends PageRequestDto{
     @ApiProperty({required:false})

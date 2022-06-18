@@ -1,6 +1,6 @@
 import { ApiProperty, OmitType, PickType } from "@nestjs/swagger"
 import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString } from "class-validator"
-import { PageRequestDto } from "src/etc/dto/page.dto"
+import { PageRequestDto } from "src/etc/dto/page-dto"
 import { IsExist } from "src/etc/validator/exist-validator"
 import { IsUnique } from "src/etc/validator/unique-validator"
 import { UserDto } from "src/user/dto/create-user.dto"

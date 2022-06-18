@@ -1,6 +1,6 @@
 import { ApiProperty, OmitType, PickType } from "@nestjs/swagger";
 import { IsEmail, IsObject, IsOptional, IsString } from "class-validator";
-import { PageResponsDto } from "src/etc/dto/page.dto";
+import { PageResponsDto } from "src/etc/dto/page-dto";
 import { IsExist } from "src/etc/validator/exist-validator";
 import { ProdukDto } from "src/produk/dto/create-produk.dto";
 import { CreateUserDto } from "src/user/dto/create-user.dto";

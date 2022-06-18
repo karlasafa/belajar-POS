@@ -27,5 +27,4 @@ export class PenjualanItemDto{
 
     @IsObject()
     user : UserIdDto
-    
 }
