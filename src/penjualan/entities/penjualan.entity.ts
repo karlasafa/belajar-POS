@@ -27,7 +27,7 @@ export class Penjualan {
     @ManyToOne(()=>Konsuman, kons => kons.id)
     konsumen : Konsuman
 
-    @ManyToOne(()=>PenjualanItem, pjitem => pjitem.id,{cascade:true})
+    @ManyToOne(()=>PenjualanItem, pjItem => pjItem.id,{cascade:true})
     item : PenjualanItem[]
 
     @ManyToOne(()=>PenjualanBayar, pjbyr => pjbyr.id,{cascade:true})

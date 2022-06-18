@@ -9,29 +9,31 @@ import { Penjualan } from './entities/penjualan.entity';
 @Injectable()
 export class PenjualanService extends PageService {
   constructor(
-    @InjectRepository(Penjualan) private PenjualanRepo : Repository<Penjualan>
+    @InjectRepository(Penjualan) private penjualanRepo : Repository<Penjualan>
   ){
     super()
   }
   create(createPenjualanDto: CreatePenjualanDto) {
-    return this.PenjualanRepo.save(createPenjualanDto);
+    console.log('save')
+    //return 'save'
+    return this.penjualanRepo.save(createPenjualanDto);
   }
 
   findAll(filter) {
-    return this.generatePage(filter,this.PenjualanRepo,{relations:['user','konsumen']});
+    return this.generatePage(filter,this.penjualanRepo,{relations:['user','konsumen']});
   }
 
   findOne(id: number) {
-    return this.PenjualanRepo.findOne(id,{relations:['user','konsumen','item','item.produk','bayar','bayar.rekening']});
+    return this.penjualanRepo.findOne(id,{relations:['user','konsumen','item','item.produk','bayar','bayar.rekening']});
   }
 
   update(id: number, updatePenjualanDto: UpdatePenjualanDto) {
     updatePenjualanDto.id = id
-    return this.PenjualanRepo.save(updatePenjualanDto);
+    return this.penjualanRepo.save(updatePenjualanDto);
   }
 
   async remove(id: number) {
-    let jual = await this.PenjualanRepo.findOne(id)
-    return this.PenjualanRepo.remove(jual);
+    let jual = await this.penjualanRepo.findOne(id)
+    return this.penjualanRepo.remove(jual);
   }
 }

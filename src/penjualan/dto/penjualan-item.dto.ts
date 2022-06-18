@@ -1,10 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger"
-import { IsDate, IsNumber, IsObject, IsOptional, Min, ValidateNested } from "class-validator"
+import { IsNumber, IsObject, IsOptional, Min, ValidateNested } from "class-validator"
 import { ProdukIdDto } from "src/produk/dto/create-produk.dto"
-import { Produk } from "src/produk/entities/produk.entity"
-import { RekeningIdDto } from "src/rekening/dto/create-rekening.dto"
-import {  UserIdDto } from "src/user/dto/create-user.dto"
-import { Penjualan } from "../entities/penjualan.entity"
+import { UserIdDto } from "src/user/dto/create-user.dto"
 
 export class PenjualanItemDto{
     @IsOptional()

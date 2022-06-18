@@ -5,9 +5,7 @@ import { PageRequestDto, PageResponsDto } from "src/etc/dto/page.dto";
 import { IsExist } from "src/etc/validator/exist-validator";
 import { IsUnique } from "src/etc/validator/unique-validator";
 import { KonsumenId } from "src/konsumen/dto/create-konsuman.dto";
-import { UserDto, UserIdDto } from "src/user/dto/create-user.dto";
-import { PenjualanBayar } from "../entities/penjualan-bayar.entity";
-import { PenjualanItem } from "../entities/penjualan-item.entity";
+import { UserIdDto } from "src/user/dto/create-user.dto";
 import { Penjualan } from "../entities/penjualan.entity";
 import { PenjualanBayarDto } from "./penjualan-bayar.dto";
 import { PenjualanItemDto } from "./penjualan-item.dto"

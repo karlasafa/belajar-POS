@@ -5,7 +5,7 @@ import { UpdatePenjualanDto } from './dto/update-penjualan.dto';
 import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { PenjualanProses } from './penjualan-proses.decorator';
 import { JwtGuard } from 'src/auth/jwt.guard';
-import { filter } from 'rxjs';
+
 
 @ApiTags('Penjualan')
 @ApiBearerAuth()
