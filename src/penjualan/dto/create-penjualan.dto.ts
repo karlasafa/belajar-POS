@@ -1,7 +1,7 @@
 import { ApiProperty, OmitType, PickType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsArray, IsDate, IsNumber, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
-import { PageRequestDto, PageResponsDto } from "src/etc/dto/page.dto";
+import { PageRequestDto, PageResponsDto } from "src/etc/dto/page-dto";
 import { IsExist } from "src/etc/validator/exist-validator";
 import { IsUnique } from "src/etc/validator/unique-validator";
 import { KonsumenId } from "src/konsumen/dto/create-konsuman.dto";
@@ -53,8 +53,8 @@ export class PenjualanDto{
     user : UserIdDto
 
 }
-export class CreatePenjualanDto extends OmitType(PenjualanDto,['id']) {}
-export class PenjualanId extends PickType(PenjualanDto,['id']) {}
+export class CreatePenjualanDto extends OmitType(PenjualanDto,['id']){}
+export class PenjualanId extends PickType(PenjualanDto,['id']){}
 
 export class FindPenjualanDto extends PageRequestDto{
     @ApiProperty({required:false})

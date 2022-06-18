@@ -1,6 +1,6 @@
 import { Konsuman } from "src/konsumen/entities/konsuman.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { PenjualanBayar } from "./penjualan-bayar.entity";
 import { PenjualanItem } from "./penjualan-item.entity";
 
@@ -27,10 +27,10 @@ export class Penjualan {
     @ManyToOne(()=>Konsuman, kons => kons.id)
     konsumen : Konsuman
 
-    @ManyToOne(()=>PenjualanItem, pjItem => pjItem.id,{cascade:true})
+    @OneToMany(()=>PenjualanItem, pjItem => pjItem.id,{cascade:true})
     item : PenjualanItem[]
 
-    @ManyToOne(()=>PenjualanBayar, pjbyr => pjbyr.id,{cascade:true})
+    @OneToMany(()=>PenjualanBayar, pjbyr => pjbyr.id,{cascade:true})
     bayar : PenjualanBayar[]
 
     @CreateDateColumn()
