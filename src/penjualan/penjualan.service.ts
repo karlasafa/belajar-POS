@@ -14,13 +14,11 @@ export class PenjualanService extends PageService {
     super()
   }
   create(createPenjualanDto: CreatePenjualanDto) {
-    console.log('save')
-    //return 'save'
     return this.penjualanRepo.save(createPenjualanDto);
   }
 
   findAll(filter) {
-    return this.generatePage(filter,this.penjualanRepo,{relations:['user','konsumen']});
+    return this.generatePage(filter,this.penjualanRepo,{relations:['user','konsumen']})
   }
 
   findOne(id: number) {

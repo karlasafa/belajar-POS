@@ -1,9 +1,9 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNumber, IsObject, IsOptional, ValidateNested } from "class-validator";
-import { RekeningIdDto } from "src/rekening/dto/create-rekening.dto";
-import { UserIdDto } from "src/user/dto/create-user.dto";
+import { ApiProperty } from "@nestjs/swagger"
+import { IsDate, IsNumber, IsObject, IsOptional, ValidateNested } from "class-validator"
+import { RekeningIdDto } from "src/rekening/dto/create-rekening.dto"
+import { UserIdDto } from "src/user/dto/create-user.dto"
 
-export class PenjualanBayarDto{ //menit 3:53
+export class PenjualanBayarDto{
     @IsOptional()
     id : number
 
@@ -21,5 +21,5 @@ export class PenjualanBayarDto{ //menit 3:53
     rekening : RekeningIdDto
 
     @IsObject()
-    user : UserIdDto 
+    user : UserIdDto
 }

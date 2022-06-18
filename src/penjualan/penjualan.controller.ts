@@ -6,10 +6,9 @@ import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { PenjualanProses } from './penjualan-proses.decorator';
 import { JwtGuard } from 'src/auth/jwt.guard';
 
-
 @ApiTags('Penjualan')
 @ApiBearerAuth()
-@UseGuards(JwtGuard) 
+@UseGuards(JwtGuard)
 @Controller('penjualan')
 export class PenjualanController {
   constructor(private readonly penjualanService: PenjualanService) {}

@@ -17,7 +17,7 @@ export class PenjualanDto{
 
     @ApiProperty()
     @IsString()
-    @IsUnique([Penjualan, 'no_faktur'])
+    @IsUnique([Penjualan,'no_faktur'])
     no_faktur : string
 
     @ApiProperty()
@@ -35,13 +35,14 @@ export class PenjualanDto{
 
     @ApiProperty({type:KonsumenId})
     @ValidateNested()
+    @IsObject()
     konsumen : KonsumenId
 
     @ApiProperty({type:[PenjualanItemDto]})
     @IsArray()
     @ValidateNested({each:true})
     @Type(()=>PenjualanItemDto)
-    item : PenjualanItemDto[] 
+    item : PenjualanItemDto[]
 
     @ApiProperty({type:[PenjualanBayarDto]})
     @IsArray()
@@ -53,7 +54,7 @@ export class PenjualanDto{
     user : UserIdDto
 
 }
-export class CreatePenjualanDto extends OmitType(PenjualanDto,['id']){}
+export class CreatePenjualanDto extends OmitType(PenjualanDto,['id']) {}
 export class PenjualanId extends PickType(PenjualanDto,['id']){}
 
 export class FindPenjualanDto extends PageRequestDto{

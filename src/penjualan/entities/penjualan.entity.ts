@@ -23,23 +23,22 @@ export class Penjualan {
 
     @Column()
     total_bayar : number
-    
+
     @ManyToOne(()=>Konsuman, kons => kons.id)
     konsumen : Konsuman
 
-    @OneToMany(()=>PenjualanItem, pjItem => pjItem.id,{cascade:true})
+    @OneToMany(()=>PenjualanItem, pjItem => pjItem.penjualan,{cascade:true})
     item : PenjualanItem[]
 
-    @OneToMany(()=>PenjualanBayar, pjbyr => pjbyr.id,{cascade:true})
+    @OneToMany(()=>PenjualanBayar, pjbyr => pjbyr.penjualan, {cascade:true})
     bayar : PenjualanBayar[]
 
     @CreateDateColumn()
     create_at : Date
 
-    @UpdateDateColumn({onUpdate:'CURRENT_TIMESTAMP(6)'})
+    @UpdateDateColumn({onUpdate:"CURRENT_TIMESTAMP(6)"})
     update_at : Date
 
     @ManyToOne(()=> User, usr => usr.id)
     user : User
 }
-
